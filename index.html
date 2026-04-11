@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stitch | Presentation Hub</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./shared/presentation.css">
+    <script src="./shared/presentation.js" defer></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#0B060D",
+                        surface: "#171119",
+                        primary: "#CA52B3",
+                        secondary: "#6477D1",
+                        "on-surface": "#ebdfeb"
+                    },
+                    fontFamily: {
+                        headline: ["Space Grotesk"],
+                        body: ["IBM Plex Sans"],
+                        label: ["JetBrains Mono"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            background:
+                radial-gradient(circle at top right, rgba(202, 82, 179, 0.16), transparent 28%),
+                radial-gradient(circle at bottom left, rgba(100, 119, 209, 0.14), transparent 24%),
+                #0B060D;
+        }
+
+        .hub-panel {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(229, 173, 230, 0.12);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 24px 60px rgba(6, 3, 10, 0.42);
+        }
+
+        .hub-shell {
+            width: 100%;
+            max-width: none;
+        }
+
+        .hub-preview {
+            box-shadow: 0 24px 50px rgba(7, 4, 11, 0.32);
+            transition:
+                transform 220ms ease,
+                border-color 220ms ease,
+                box-shadow 220ms ease;
+        }
+
+        .hub-preview:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 172, 232, 0.22);
+            box-shadow: 0 28px 70px rgba(7, 4, 11, 0.46);
+        }
+
+        .hub-feature {
+            position: relative;
+            overflow: hidden;
+            min-height: 340px;
+        }
+
+        .hub-feature--clean {
+            isolation: isolate;
+            background:
+                radial-gradient(circle at top right, rgba(202, 82, 179, 0.12), transparent 26%),
+                radial-gradient(circle at bottom left, rgba(100, 119, 209, 0.12), transparent 24%),
+                linear-gradient(180deg, rgba(19, 13, 22, 0.92), rgba(14, 10, 17, 0.94));
+        }
+
+        .hub-feature__image {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: saturate(0.8) brightness(0.36) blur(1px);
+            transition: transform 320ms ease, filter 320ms ease;
+        }
+
+        .hub-feature:hover .hub-feature__image {
+            transform: scale(1.03);
+            filter: saturate(0.92) brightness(0.44) blur(0);
+        }
+
+        .hub-feature__veil {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(11, 6, 13, 0.48) 0%, rgba(11, 6, 13, 0.88) 72%),
+                radial-gradient(circle at top right, rgba(202, 82, 179, 0.16), transparent 28%);
+        }
+
+        .hub-feature__ambient {
+            position: absolute;
+            border-radius: 999px;
+            pointer-events: none;
+            filter: blur(1px);
+            opacity: 0.92;
+        }
+
+        .hub-feature__ambient--primary {
+            right: -36px;
+            top: -44px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(202, 82, 179, 0.16) 0%, rgba(202, 82, 179, 0) 72%);
+        }
+
+        .hub-feature__ambient--secondary {
+            left: -34px;
+            bottom: -48px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(100, 119, 209, 0.14) 0%, rgba(100, 119, 209, 0) 72%);
+        }
+
+        .hub-map-card {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .hub-map-card__header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .hub-map-card__title {
+            max-width: 20ch;
+        }
+
+        .hub-map-card__action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hub-map-card__list {
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .hub-map-card__list::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(202, 82, 179, 0.6), rgba(202, 82, 179, 0.1));
+            opacity: 0.35;
+        }
+
+        .hub-route-row {
+            position: relative;
+        }
+
+        .hub-route-row::before {
+            content: "";
+            position: absolute;
+            left: -14px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #ca52b3;
+            box-shadow: 0 0 12px rgba(202, 82, 179, 0.65);
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 220ms ease;
+        }
+
+        .hub-route-row[data-active="true"],
+        .hub-route-row:focus-visible {
+            border-color: rgba(255, 172, 232, 0.28);
+            background: rgba(202, 82, 179, 0.14);
+            box-shadow: inset 0 0 0 1px rgba(255, 172, 232, 0.1);
+        }
+
+        .hub-route-row:hover::before,
+        .hub-route-row:focus-visible::before,
+        .hub-route-row[data-active="true"]::before {
+            opacity: 1;
+        }
+
+        .hub-secondary-btn {
+            border: 1px solid rgba(229, 173, 230, 0.14);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, color 180ms ease;
+        }
+
+        .hub-secondary-btn:hover,
+        .hub-secondary-btn:focus-visible {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 172, 232, 0.22);
+            color: rgba(247, 244, 251, 0.95);
+            transform: translateY(-1px);
+        }
+
+        .hub-pill {
+            border: 1px solid rgba(229, 173, 230, 0.14);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(235, 223, 235, 0.78);
+        }
+
+        .hub-panel p,
+        .hub-route-row p,
+        #sumario p {
+            color: rgba(235, 223, 235, 0.78);
+            line-height: 1.6;
+        }
+
+        .hub-duo-grid {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 2100px) {
+            .hub-duo-grid {
+                grid-template-columns: minmax(260px, 0.55fr) minmax(0, 1.45fr);
+                align-items: start;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .hub-map-card__title {
+                max-width: none;
+            }
+        }
+
+        .hub-route-row {
+            border: 1px solid rgba(229, 173, 230, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+        }
+
+        .hub-route-row:hover {
+            transform: translateX(3px);
+            border-color: rgba(255, 172, 232, 0.2);
+            background: rgba(202, 82, 179, 0.09);
+        }
+
+        .hub-kpi {
+            border: 1px solid rgba(229, 173, 230, 0.08);
+            background: rgba(10, 7, 13, 0.38);
+        }
+    </style>
+</head>
+<body data-stitch-page="home" class="font-body text-on-surface selection:bg-primary/30">
+    <div class="pointer-events-none fixed inset-0 overflow-hidden">
+        <div class="absolute -top-32 right-0 h-80 w-80 rounded-full bg-primary/20 blur-[120px]"></div>
+        <div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-secondary/20 blur-[120px]"></div>
+    </div>
+
+    <main class="relative min-h-screen pl-24 pr-6 py-8 md:pl-32 md:pr-10 lg:pl-36 lg:py-10">
+        <div class="hub-shell flex flex-col gap-8">
+            <section class="grid gap-8 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+                <div class="hub-panel relative overflow-hidden rounded-[2.75rem] p-8 md:p-10 xl:p-12">
+                    <div class="pointer-events-none absolute inset-0">
+                        <div class="absolute right-0 top-0 h-48 w-48 rounded-full bg-primary/10 blur-[100px]"></div>
+                        <div class="absolute bottom-0 left-0 h-40 w-40 rounded-full bg-secondary/10 blur-[90px]"></div>
+                    </div>
+                    <div class="relative">
+                        <div class="font-label text-[10px] uppercase tracking-[0.35em] text-secondary/80">Presentation Hub</div>
+                        <h1 class="mt-5 max-w-4xl font-headline text-5xl font-bold leading-[0.92] tracking-tight md:text-6xl xl:text-7xl">
+                            Um painel so para abrir, revisar e apresentar as 5 telas.
+                        </h1>
+                        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-on-surface/70 xl:text-[1.22rem]">
+                            O hub agora funciona como centro de comando: entra na apresentacao em um clique,
+                            mostra o mapa completo dos slides, resume os atalhos e deixa a execucao local explicita.
+                        </p>
+
+                        <div class="mt-8 flex flex-wrap gap-4">
+                            <a href="./01_capa_v3/code.html" class="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-primary to-pink-400 px-7 py-4 font-headline text-lg font-bold text-[#120c14] transition hover:shadow-[0_0_30px_rgba(202,82,179,0.35)]">
+                                Abrir apresentacao
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                            <a href="#sumario" class="hub-secondary-btn inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-7 py-4 font-headline text-lg font-semibold text-on-surface transition hover:border-primary/30 hover:bg-primary/10">
+                                Explorar previews
+                                <span class="material-symbols-outlined">view_cozy</span>
+                            </a>
+                        </div>
+
+                        <div class="mt-10 grid gap-4 md:grid-cols-3">
+                            <div class="hub-kpi rounded-[1.8rem] p-5">
+                                <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/70">Telas</div>
+                                <div class="mt-3 font-headline text-3xl font-bold">05</div>
+                                <p class="mt-3 text-sm leading-relaxed text-on-surface/65">Cada slide agora tem rota fixa e pode ser acessado pelo menu lateral ou por atalho.</p>
+                            </div>
+                            <div class="hub-kpi rounded-[1.8rem] p-5">
+                                <div class="font-label text-[10px] uppercase tracking-[0.28em] text-secondary/80">Atalhos</div>
+                                <div class="mt-3 font-headline text-3xl font-bold">H · 1-5</div>
+                                <p class="mt-3 text-sm leading-relaxed text-on-surface/65">Hub, salto rapido, fullscreen e ajuda ficaram padronizados em toda a navegacao.</p>
+                            </div>
+                            <div class="hub-kpi rounded-[1.8rem] p-5">
+                                <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/70">Execucao</div>
+                                <div class="mt-3 font-headline text-3xl font-bold">1 comando</div>
+                                <p class="mt-3 text-sm leading-relaxed text-on-surface/65">Use <span class="font-label">.\start.ps1</span> para subir o servidor e abrir a home automaticamente.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap gap-3 text-sm text-on-surface/65">
+                            <span class="hub-pill rounded-full border border-white/10 bg-black/15 px-4 py-2">Sidebar navegavel</span>
+                            <span class="hub-pill rounded-full border border-white/10 bg-black/15 px-4 py-2">Navbar padronizada</span>
+                            <span class="hub-pill rounded-full border border-white/10 bg-black/15 px-4 py-2">Fullscreen e ajuda</span>
+                            <span class="hub-pill rounded-full border border-white/10 bg-black/15 px-4 py-2">Preview das telas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid gap-6">
+                    <a href="./01_capa_v3/code.html" class="hub-panel hub-feature hub-feature--clean rounded-[2.75rem] p-8 text-on-surface">
+                        <div class="hub-feature__ambient hub-feature__ambient--primary"></div>
+                        <div class="hub-feature__ambient hub-feature__ambient--secondary"></div>
+                        <div class="pointer-events-none absolute inset-x-8 top-[5.75rem] h-px bg-gradient-to-r from-white/0 via-white/12 to-white/0"></div>
+                        <div class="relative z-10 flex h-full flex-col justify-between gap-10">
+                            <div class="flex flex-wrap gap-3 text-[11px] uppercase tracking-[0.28em]">
+                                <span class="rounded-full border border-white/10 bg-black/20 px-4 py-2 font-label text-primary/90">Entrada principal</span>
+                                <span class="rounded-full border border-white/10 bg-black/20 px-4 py-2 font-label text-secondary/90">Slide 01</span>
+                            </div>
+                            <div class="max-w-[36rem]">
+                                <div class="font-label text-[10px] uppercase tracking-[0.32em] text-secondary/80">Comece por aqui</div>
+                                <h2 class="mt-4 font-headline text-4xl font-bold tracking-tight md:text-5xl">Capa com CTA, mensagem central e atmosfera de abertura.</h2>
+                                <p class="mt-4 max-w-lg text-sm leading-7 text-on-surface/75 md:text-base">
+                                    A home agora te joga direto na melhor entrada da narrativa, sem depender de abrir pasta por pasta.
+                                </p>
+                                <div class="mt-6 inline-flex items-center gap-3 rounded-full border border-primary/15 bg-white/5 px-5 py-3 font-headline text-sm font-semibold shadow-[0_16px_36px_rgba(7,4,11,0.24)]">
+                                    Abrir slide 01
+                                    <span class="material-symbols-outlined">north_east</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="hub-duo-grid grid gap-6">
+                        <aside class="hub-panel rounded-[2.2rem] p-6">
+                            <div class="font-label text-[10px] uppercase tracking-[0.32em] text-primary/80">Rodar local</div>
+                            <h2 class="mt-4 font-headline text-3xl font-bold tracking-tight">Pronto para demo.</h2>
+                            <p class="mt-3 text-sm leading-7 text-on-surface/70">
+                                Como os HTMLs usam CDN para fontes, Tailwind e video, rode com internet ativa.
+                            </p>
+                            <div class="mt-5 rounded-[1.6rem] border border-white/10 bg-black/25 p-4">
+                                <div class="font-label text-[10px] uppercase tracking-[0.28em] text-secondary/80">PowerShell</div>
+                                <pre class="mt-3 overflow-x-auto font-label text-sm text-on-surface/90"><code>cd D:\Dev\Projects\Antigravity\project-01\stitch
+.\start.ps1</code></pre>
+                            </div>
+                            <div class="mt-4 rounded-[1.6rem] border border-white/10 bg-black/20 p-4">
+                                <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/70">Alternativa</div>
+                                <pre class="mt-3 overflow-x-auto font-label text-sm text-on-surface/90"><code>python -m http.server 8000</code></pre>
+                            </div>
+                        </aside>
+
+                        <section class="hub-panel hub-map-card rounded-[2.2rem] p-6">
+                            <div class="hub-map-card__header">
+                                <div>
+                                    <div class="font-label text-[10px] uppercase tracking-[0.32em] text-secondary/80">Mapa rapido</div>
+                                    <h2 class="hub-map-card__title mt-4 font-headline text-[2.2rem] font-bold leading-[0.98] tracking-tight md:text-[2.5rem]">Entre em qualquer trecho da narrativa.</h2>
+                                </div>
+                                <a href="#sumario" class="hub-map-card__action hub-secondary-btn rounded-full border border-white/10 px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] text-on-surface/70 transition hover:border-primary/30 hover:text-on-surface">
+                                    Ver grid
+                                    <span class="material-symbols-outlined text-base">south_east</span>
+                                </a>
+                            </div>
+                            <div class="hub-map-card__list grid gap-3">
+                                <a href="./01_capa_v3/code.html" class="hub-route-row rounded-[1.4rem] p-4" data-active="true">
+                                    <div class="flex items-start gap-4">
+                                        <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/80">01</div>
+                                        <div>
+                                            <h3 class="font-headline text-xl font-bold tracking-tight">Capa</h3>
+                                            <p class="mt-1 text-sm leading-relaxed text-on-surface/65">Abertura editorial, headline principal e CTA de entrada.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="./02_contexto_v3/code.html" class="hub-route-row rounded-[1.4rem] p-4">
+                                    <div class="flex items-start gap-4">
+                                        <div class="font-label text-[10px] uppercase tracking-[0.28em] text-secondary/80">02</div>
+                                        <div>
+                                            <h3 class="font-headline text-xl font-bold tracking-tight">Contexto</h3>
+                                            <p class="mt-1 text-sm leading-relaxed text-on-surface/65">Define o problema, os silos de informacao e o por que do produto.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="./03_pipeline_v3/code.html" class="hub-route-row rounded-[1.4rem] p-4">
+                                    <div class="flex items-start gap-4">
+                                        <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/80">03</div>
+                                        <div>
+                                            <h3 class="font-headline text-xl font-bold tracking-tight">Pipeline</h3>
+                                            <p class="mt-1 text-sm leading-relaxed text-on-surface/65">Mostra o fluxo tecnico da captura ate a resposta com citacao.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="./04_diferenciais_v3/code.html" class="hub-route-row rounded-[1.4rem] p-4">
+                                    <div class="flex items-start gap-4">
+                                        <div class="font-label text-[10px] uppercase tracking-[0.28em] text-secondary/80">04</div>
+                                        <div>
+                                            <h3 class="font-headline text-xl font-bold tracking-tight">Diferenciais</h3>
+                                            <p class="mt-1 text-sm leading-relaxed text-on-surface/65">Enquadra confianca, custo operacional e benchmark da proposta.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="./05_conclus_o_v3/code.html" class="hub-route-row rounded-[1.4rem] p-4">
+                                    <div class="flex items-start gap-4">
+                                        <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/80">05</div>
+                                        <div>
+                                            <h3 class="font-headline text-xl font-bold tracking-tight">Conclusao</h3>
+                                            <p class="mt-1 text-sm leading-relaxed text-on-surface/65">Fecha a historia e reforca valor para estudante e pequena empresa.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sumario" class="space-y-6">
+                <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                    <div>
+                        <div class="font-label text-[10px] uppercase tracking-[0.32em] text-secondary/80">Grid de previews</div>
+                        <h2 class="mt-3 font-headline text-4xl font-bold tracking-tight">Escolha a tela pelo snapshot real.</h2>
+                    </div>
+                    <p class="max-w-xl text-sm leading-relaxed text-on-surface/65">
+                        Os cards abaixo usam os screenshots reais do projeto para virar menu visual de navegação.
+                    </p>
+                </div>
+
+                <div class="grid gap-6 xl:grid-cols-12">
+                    <a href="./01_capa_v3/code.html" class="hub-preview group overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 xl:col-span-7">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="./01_capa_v3/screen.png" alt="Preview da capa" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]">
+                        </div>
+                        <div class="p-6">
+                            <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/80">01 · Capa</div>
+                            <h3 class="mt-3 font-headline text-2xl font-bold tracking-tight">Abertura editorial e proposta central</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-on-surface/65">Tese principal, CTA inicial e atmosfera visual da narrativa.</p>
+                        </div>
+                    </a>
+
+                    <a href="./02_contexto_v3/code.html" class="hub-preview group overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 xl:col-span-5">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="./02_contexto_v3/screen.png" alt="Preview do contexto" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]">
+                        </div>
+                        <div class="p-6">
+                            <div class="font-label text-[10px] uppercase tracking-[0.28em] text-secondary/80">02 · Contexto</div>
+                            <h3 class="mt-3 font-headline text-2xl font-bold tracking-tight">Problema e excesso de informacao</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-on-surface/65">Mostra por que dados soltos nao viram conhecimento recuperavel sem estrutura.</p>
+                        </div>
+                    </a>
+
+                    <a href="./03_pipeline_v3/code.html" class="hub-preview group overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 xl:col-span-4">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="./03_pipeline_v3/screen.png" alt="Preview do pipeline" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]">
+                        </div>
+                        <div class="p-6">
+                            <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/80">03 · Pipeline</div>
+                            <h3 class="mt-3 font-headline text-2xl font-bold tracking-tight">Arquitetura de captura ate resposta</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-on-surface/65">Explica o fluxo multimodal, indexacao local e camada de RAG com citacao.</p>
+                        </div>
+                    </a>
+
+                    <a href="./04_diferenciais_v3/code.html" class="hub-preview group overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 xl:col-span-4">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="./04_diferenciais_v3/screen.png" alt="Preview dos diferenciais" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]">
+                        </div>
+                        <div class="p-6">
+                            <div class="font-label text-[10px] uppercase tracking-[0.28em] text-secondary/80">04 · Diferenciais</div>
+                            <h3 class="mt-3 font-headline text-2xl font-bold tracking-tight">Confianca, custo e benchmark</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-on-surface/65">Resume o que torna a proposta defensavel do ponto de vista de produto e operacao.</p>
+                        </div>
+                    </a>
+
+                    <a href="./05_conclus_o_v3/code.html" class="hub-preview group overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 xl:col-span-4">
+                        <div class="aspect-[16/9] overflow-hidden">
+                            <img src="./05_conclus_o_v3/screen.png" alt="Preview da conclusao" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]">
+                        </div>
+                        <div class="p-6">
+                            <div class="font-label text-[10px] uppercase tracking-[0.28em] text-primary/80">05 · Conclusao</div>
+                            <h3 class="mt-3 font-headline text-2xl font-bold tracking-tight">Fechamento para estudante e pequena empresa</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-on-surface/65">Arremata a narrativa e reforca o valor de uma IA rastreavel.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

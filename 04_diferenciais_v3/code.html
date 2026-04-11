@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../shared/presentation.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#ebdfeb",
+                        "secondary-container": "#2d4199",
+                        "on-tertiary-container": "#530047",
+                        "on-tertiary-fixed": "#3a0032",
+                        "on-primary": "#5e0053",
+                        "primary": "#fface8",
+                        "surface": "#171119",
+                        "tertiary-fixed": "#ffd7ef",
+                        "secondary-fixed": "#dde1ff",
+                        "secondary-fixed-dim": "#b9c3ff",
+                        "surface-container": "#241d26",
+                        "tertiary": "#ffade6",
+                        "surface-bright": "#3e3740",
+                        "surface-tint": "#fface8",
+                        "outline-variant": "#53424d",
+                        "inverse-surface": "#ebdfeb",
+                        "on-surface-variant": "#d8c0cd",
+                        "background": "#171119",
+                        "on-primary-fixed": "#3a0032",
+                        "on-background": "#ebdfeb",
+                        "outline": "#a08b97",
+                        "on-tertiary-fixed-variant": "#80146f",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#820974",
+                        "surface-container-highest": "#3a323b",
+                        "primary-fixed-dim": "#fface8",
+                        "surface-container-high": "#2f2830",
+                        "primary-fixed": "#ffd7f0",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#5e0052",
+                        "surface-variant": "#3a323b",
+                        "on-secondary": "#0d267f",
+                        "error-container": "#93000a",
+                        "secondary": "#b9c3ff",
+                        "tertiary-container": "#d966bf",
+                        "on-secondary-container": "#a6b4ff",
+                        "surface-dim": "#171119",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#001257",
+                        "on-secondary-fixed-variant": "#2a3f96",
+                        "surface-container-low": "#201922",
+                        "primary-container": "#dd62c4",
+                        "inverse-on-surface": "#352e37",
+                        "inverse-primary": "#a02c8e",
+                        "tertiary-fixed-dim": "#ffade6",
+                        "on-primary-container": "#520048",
+                        "surface-container-lowest": "#120c14"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["IBM Plex Sans"],
+                        "label": ["JetBrains Mono"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            background: rgba(103, 34, 89, 0.12);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .ghost-border {
+            border: 1px solid rgba(229, 173, 230, 0.1);
+        }
+        .cinematic-shadow {
+            box-shadow: 0 40px 60px -15px rgba(100, 119, 209, 0.04);
+        }
+        .card-hover-effect {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover-effect:hover {
+            background: rgba(202, 82, 179, 0.15);
+            border-color: rgba(255, 172, 232, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(202, 82, 179, 0.2);
+        }
+        .metric-hover:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        #bg-video {
+            filter: brightness(0.4) contrast(1.1) saturate(0.8);
+        }
+        .sidebar-item-active {
+            background: linear-gradient(90deg, rgba(202, 82, 179, 0.2) 0%, rgba(202, 82, 179, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary overflow-hidden stitch-standard-topbar" data-stitch-page="diferenciais">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-12 py-6 bg-transparent">
+<div class="text-2xl font-bold tracking-tighter text-[#F7F4FB] font-['Space_Grotesk']">
+        Free Plaud
+<!-- Header Center Anchor -->
+<div class="absolute left-1/2 -translate-x-1/2">
+<span class="font-['JetBrains_Mono'] text-xs uppercase tracking-[0.3em] text-on-surface-variant/60">Diferenciais</span>
+<div class="flex items-center gap-8">
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#F7F4FB]/60 font-medium hover:text-[#CA52B3] transition-colors duration-300 font-['Space_Grotesk'] tracking-tight" href="#">Visão Geral</a>
+<a class="text-[#F7F4FB]/60 font-medium hover:text-[#CA52B3] transition-colors duration-300 font-['Space_Grotesk'] tracking-tight" href="#">Tecnologia</a>
+<a class="text-[#F7F4FB]/60 font-medium hover:text-[#CA52B3] transition-colors duration-300 font-['Space_Grotesk'] tracking-tight" href="#">Filosofia</a>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-[#F7F4FB]/60 hover:text-[#CA52B3] transition-colors">fullscreen</button>
+<button class="material-symbols-outlined text-[#F7F4FB]/60 hover:text-[#CA52B3] transition-colors">settings</button>
+</div>
+</div>
+</nav>
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 h-full z-[60] flex flex-col items-center py-8 bg-[#160915]/90 backdrop-blur-[24px] w-20 hover:w-64 transition-all duration-500 group border-r border-white/5 shadow-2xl overflow-hidden">
+<div class="mb-12 transition-all duration-500 flex flex-col items-center group-hover:items-start group-hover:px-6 w-full shrink-0">
+<div class="flex items-center">
+<span class="text-[#CA52B3] font-black font-['JetBrains_Mono'] text-xl">FP.</span>
+<div class="hidden group-hover:block ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<p class="font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest text-on-surface leading-none">Free Plaud</p>
+<p class="font-['JetBrains_Mono'] text-[8px] text-[#CA52B3]/60 mt-1">v1.2.0-core</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 w-full flex-grow">
+<div class="flex items-center px-6 py-4 cursor-pointer text-[#F7F4FB]/40 hover:bg-white/5 hover:text-[#F7F4FB] transition-all group/item">
+<span class="material-symbols-outlined transition-transform group-hover/item:scale-110">present_to_all</span>
+<span class="ml-6 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.2em] hidden group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Apresentação</span>
+</div>
+<div class="flex items-center px-6 py-4 cursor-pointer text-[#F7F4FB]/40 hover:bg-white/5 hover:text-[#F7F4FB] transition-all group/item">
+<span class="material-symbols-outlined transition-transform group-hover/item:scale-110">analytics</span>
+<span class="ml-6 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.2em] hidden group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Dados AI</span>
+</div>
+<div class="flex items-center px-6 py-4 cursor-pointer sidebar-item-active text-[#CA52B3] border-r-4 border-[#CA52B3] group/item">
+<span class="material-symbols-outlined transition-transform group-hover/item:scale-110">account_tree</span>
+<span class="ml-6 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.2em] hidden group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Arquitetura</span>
+</div>
+<div class="flex items-center px-6 py-4 cursor-pointer text-[#F7F4FB]/40 hover:bg-white/5 hover:text-[#F7F4FB] transition-all group/item">
+<span class="material-symbols-outlined transition-transform group-hover/item:scale-110">terminal</span>
+<span class="ml-6 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.2em] hidden group-hover:block whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">Metadados</span>
+</div>
+</div>
+<div class="mt-auto w-full px-6 py-4 border-t border-white/5 hidden group-hover:block opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-[10px] font-bold text-on-primary">BR</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold uppercase tracking-tighter">Admin User</span>
+<span class="text-[8px] text-on-surface-variant/60">Free Tier</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="relative h-screen w-full pl-20 overflow-hidden bg-transparent">
+<!-- HLS Video Background -->
+<div class="fixed inset-0 z-0 pointer-events-none" style="background-color:#0B060D;">
+<video autoplay="" class="w-full h-full object-cover grayscale opacity-50" id="bg-video" loop="" muted="" playsinline="" preload="auto" poster="https://image.mux.com/4IMYGcL01xjs7ek5ANO17JC4VQVUTsojZlnw4fXzwSxc/thumbnail.jpg?time=0" crossorigin="anonymous"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-center px-24 py-32">
+<!-- Hero Statement -->
+<div class="max-w-4xl mb-16">
+<h1 class="font-headline text-7xl font-bold tracking-tight text-on-surface mb-6 leading-tight">
+                Mais do que um chat
+            </h1>
+<p class="text-2xl font-light text-on-surface-variant/80 max-w-2xl leading-relaxed">
+                Um sistema rastreável, <span class="text-primary font-medium italic">local-first</span> e defensável para recuperar conhecimento com IA.
+            </p>
+</div>
+<!-- Bento Grid of Differentiators -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 pr-12">
+<!-- Card 1 -->
+<div class="bg-glass ghost-border p-8 rounded-xl flex flex-col justify-between aspect-square group card-hover-effect">
+<span class="material-symbols-outlined text-4xl text-primary mb-4 transition-transform duration-500 group-hover:scale-110" data-weight="fill">format_quote</span>
+<div>
+<h3 class="font-headline text-xl font-bold mb-2 group-hover:text-primary transition-colors">Citação obrigatória</h3>
+<p class="text-sm text-on-surface-variant font-light leading-relaxed">Transparência absoluta com fontes diretas em cada resposta gerada.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-glass ghost-border p-8 rounded-xl flex flex-col justify-between aspect-square mt-12 md:mt-8 group card-hover-effect">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4 transition-transform duration-500 group-hover:scale-110" data-weight="fill">savings</span>
+<div>
+<h3 class="font-headline text-xl font-bold mb-2 group-hover:text-secondary transition-colors">Baixo custo</h3>
+<p class="text-sm text-on-surface-variant font-light leading-relaxed">Arquitetura otimizada para eficiência máxima de processamento.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-glass ghost-border p-8 rounded-xl flex flex-col justify-between aspect-square group card-hover-effect">
+<span class="material-symbols-outlined text-4xl text-primary mb-4 transition-transform duration-500 group-hover:scale-110" data-weight="fill">equalizer</span>
+<div>
+<h3 class="font-headline text-xl font-bold mb-2 group-hover:text-primary transition-colors">Benchmark-first</h3>
+<p class="text-sm text-on-surface-variant font-light leading-relaxed">Validação contínua através de métricas rigorosas de performance.</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-glass ghost-border p-8 rounded-xl flex flex-col justify-between aspect-square mt-12 md:mt-8 group card-hover-effect">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4 transition-transform duration-500 group-hover:scale-110" data-weight="fill">view_quilt</span>
+<div>
+<h3 class="font-headline text-xl font-bold mb-2 group-hover:text-secondary transition-colors">Arquitetura modular</h3>
+<p class="text-sm text-on-surface-variant font-light leading-relaxed">Flexibilidade total para integrar novos modelos e fontes de dados.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Signature Pulse Indicator -->
+<div class="fixed bottom-32 right-12 w-24 h-24 pointer-events-none z-50 overflow-visible">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-150 animate-pulse"></div>
+<div class="absolute inset-0 bg-secondary/5 rounded-full blur-2xl animate-pulse delay-700"></div>
+</div>
+<script>document.addEventListener('DOMContentLoaded', function() { var video = document.getElementById('bg-video'); if (!video) return; video.muted = true; var videoSrc = 'https://stream.mux.com/4IMYGcL01xjs7ek5ANO17JC4VQVUTsojZlnw4fXzwSxc.m3u8'; var fallbackSrc = 'https://stream.mux.com/4IMYGcL01xjs7ek5ANO17JC4VQVUTsojZlnw4fXzwSxc.mp4'; var tryPlay = function() { video.play().catch(function(e){ console.log('Auto-play prevented', e); }); }; if (window.Hls && Hls.isSupported()) { var hls = new Hls({ startLevel: 0, maxBufferLength: 6, maxMaxBufferLength: 12, capLevelToPlayerSize: true }); hls.loadSource(videoSrc); hls.attachMedia(video); hls.on(Hls.Events.MANIFEST_PARSED, function() { tryPlay(); }); hls.on(Hls.Events.ERROR, function(event, data) { if (data && data.fatal) { hls.destroy(); video.src = fallbackSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } }); } else if (video.canPlayType('application/vnd.apple.mpegurl')) { video.src = videoSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } else { video.src = fallbackSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } });</script>
+<script defer="" src="../shared/presentation.js"></script>
+</body></html>
+
+
+
+

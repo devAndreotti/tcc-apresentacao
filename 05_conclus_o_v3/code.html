@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../shared/presentation.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#ebdfeb",
+                    "secondary-container": "#2d4199",
+                    "on-tertiary-container": "#530047",
+                    "on-tertiary-fixed": "#3a0032",
+                    "on-primary": "#5e0053",
+                    "primary": "#fface8",
+                    "surface": "#171119",
+                    "tertiary-fixed": "#ffd7ef",
+                    "secondary-fixed": "#dde1ff",
+                    "secondary-fixed-dim": "#b9c3ff",
+                    "surface-container": "#241d26",
+                    "tertiary": "#ffade6",
+                    "surface-bright": "#3e3740",
+                    "surface-tint": "#fface8",
+                    "outline-variant": "#53424d",
+                    "inverse-surface": "#ebdfeb",
+                    "on-surface-variant": "#d8c0cd",
+                    "background": "#171119",
+                    "on-primary-fixed": "#3a0032",
+                    "on-background": "#ebdfeb",
+                    "outline": "#a08b97",
+                    "on-tertiary-fixed-variant": "#80146f",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#820974",
+                    "surface-container-highest": "#3a323b",
+                    "primary-fixed-dim": "#fface8",
+                    "surface-container-high": "#2f2830",
+                    "primary-fixed": "#ffd7f0",
+                    "error": "#ffb4ab",
+                    "on-tertiary": "#5e0052",
+                    "surface-variant": "#3a323b",
+                    "on-secondary": "#0d267f",
+                    "error-container": "#93000a",
+                    "secondary": "#b9c3ff",
+                    "tertiary-container": "#d966bf",
+                    "on-secondary-container": "#a6b4ff",
+                    "surface-dim": "#171119",
+                    "on-error": "#690005",
+                    "on-secondary-fixed": "#001257",
+                    "on-secondary-fixed-variant": "#2a3f96",
+                    "surface-container-low": "#201922",
+                    "primary-container": "#dd62c4",
+                    "inverse-on-surface": "#352e37",
+                    "inverse-primary": "#a02c8e",
+                    "tertiary-fixed-dim": "#ffade6",
+                    "on-primary-container": "#520048",
+                    "surface-container-lowest": "#120c14"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["IBM Plex Sans"],
+                    "label": ["JetBrains Mono"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(103, 34, 89, 0.22);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+        .flipped-video-bg {
+            transform: scaleX(-1) scale(1.06);
+            object-fit: cover;
+            object-position: right center;
+            filter: brightness(0.5) contrast(1.08) saturate(0.85) hue-rotate(-10deg);
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .ghost-border {
+            border: 1px solid rgba(229, 173, 230, 0.18);
+        }
+        .editorial-shadow {
+            box-shadow: 0 40px 60px rgba(100, 119, 209, 0.04);
+        }
+        .premium-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .premium-hover:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 172, 232, 0.6);
+            background: rgba(103, 34, 89, 0.35);
+            box-shadow: 0 25px 50px -12px rgba(202, 82, 179, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen overflow-hidden stitch-standard-topbar" data-stitch-page="conclusao">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-12 py-6 bg-transparent">
+<div class="text-2xl font-bold tracking-tighter text-[#F7F4FB] font-headline">Free Plaud</div>
+<div class="flex items-center gap-12">
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-[#F7F4FB]/60 font-medium font-headline tracking-tight hover:text-[#CA52B3] transition-colors duration-300" href="#">Visão Geral</a>
+<a class="text-[#F7F4FB]/60 font-medium font-headline tracking-tight hover:text-[#CA52B3] transition-colors duration-300" href="#">Tecnologia</a>
+<a class="text-[#F7F4FB]/60 font-medium font-headline tracking-tight hover:text-[#CA52B3] transition-colors duration-300" href="#">Filosofia</a>
+<span class="text-[#CA52B3] font-bold border-b-2 border-[#CA52B3] pb-1 font-headline tracking-tight">Encerramento</span>
+</nav>
+<div class="flex items-center gap-4 text-[#CA52B3]">
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform" data-icon="fullscreen">fullscreen</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-110 transition-transform" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full z-[60] flex flex-col items-center py-8 bg-[#160915]/90 backdrop-blur-[18px] transition-all duration-500 ease-in-out w-20 hover:w-64 group border-r border-outline-variant/15">
+<div class="mb-12 flex items-center justify-center w-full px-6 overflow-hidden">
+<span class="material-symbols-outlined text-[#CA52B3] flex-shrink-0" data-icon="terminal">terminal</span>
+<span class="text-[#CA52B3] font-black font-headline text-xl ml-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">FP-OS</span>
+</div>
+<div class="flex flex-col gap-2 w-full overflow-hidden">
+<div class="flex items-center px-6 gap-4 text-[#F7F4FB]/40 hover:bg-[#672259]/30 hover:text-[#F7F4FB] py-4 cursor-pointer transition-all duration-300">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="present_to_all">present_to_all</span>
+<span class="font-label text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Apresentação</span>
+</div>
+<div class="flex items-center px-6 gap-4 text-[#F7F4FB]/40 hover:bg-[#672259]/30 hover:text-[#F7F4FB] py-4 cursor-pointer transition-all duration-300">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="analytics">analytics</span>
+<span class="font-label text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Dados AI</span>
+</div>
+<div class="flex items-center px-6 gap-4 text-[#F7F4FB]/40 hover:bg-[#672259]/30 hover:text-[#F7F4FB] py-4 cursor-pointer transition-all duration-300">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="account_tree">account_tree</span>
+<span class="font-label text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Arquitetura</span>
+</div>
+<div class="flex items-center px-6 gap-4 bg-[#CA52B3]/20 text-[#CA52B3] border-r-4 border-[#CA52B3] py-4 cursor-pointer transition-all duration-300">
+<span class="material-symbols-outlined flex-shrink-0" data-icon="terminal">terminal</span>
+<span class="font-label text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">Metadados</span>
+</div>
+</div>
+<div class="mt-auto px-6 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<p class="font-headline font-bold text-[#CA52B3] text-sm whitespace-nowrap">Editorial Intelligence</p>
+<p class="font-label text-[10px] text-[#F7F4FB]/40">v1.0.4-brazil</p>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="relative h-screen w-full flex items-center justify-center pl-20 overflow-hidden">
+<!-- Hero Background Video Simulation -->
+<div class="absolute inset-0 pointer-events-none z-0" style="background-image:url('https://image.mux.com/00qQnfNo7sSpn3pB1hYKkyeSDvxs01NxiQ3sr29uL3e028/thumbnail.jpg?time=0');background-size:cover;background-position:center;">
+<video autoplay="" class="flipped-video-bg" id="bgVideo" loop="" muted="" playsinline="" preload="auto" poster="https://image.mux.com/00qQnfNo7sSpn3pB1hYKkyeSDvxs01NxiQ3sr29uL3e028/thumbnail.jpg?time=0" crossorigin="anonymous"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
+</div>
+<!-- Layout Content -->
+<section class="relative z-10 w-full max-w-7xl px-12 grid grid-cols-12 gap-12 items-center">
+<!-- Left Side: Large Typography -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-8">
+<div class="flex items-center gap-4">
+<span class="font-label text-primary text-sm tracking-[0.3em] uppercase">Status: Concluído</span>
+<div class="w-12 h-[1px] bg-outline-variant"></div>
+<span class="font-label text-[#F7F4FB]/40 text-sm tracking-widest">Slide 05</span>
+</div>
+<h1 class="font-headline text-6xl md:text-8xl font-bold tracking-tighter text-[#F7F4FB] leading-tight">
+                    Do estudante à <span class="text-primary italic">pequena empresa.</span>
+</h1>
+<p class="text-2xl font-light text-[#F7F4FB]/70 max-w-xl leading-relaxed">
+                    IA útil quando sabe citar de onde veio. Uma ponte entre seus dados brutos e o conhecimento acionável.
+                </p>
+</div>
+<!-- Right Side: Bento Style Cards -->
+<div class="col-span-12 lg:col-span-5 grid grid-cols-1 gap-6">
+<!-- Card 1: Note Interaction -->
+<div class="glass-panel ghost-border p-8 rounded-xl editorial-shadow premium-hover cursor-pointer">
+<div class="flex items-start justify-between mb-6">
+<div class="bg-primary/20 p-3 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="forum">forum</span>
+</div>
+<span class="font-label text-[10px] text-primary-fixed uppercase tracking-tighter px-2 py-1 bg-surface-container rounded">Personal User</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-3">Conversa com suas anotações</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Interface dialógica que entende o contexto de suas notas pessoais, acadêmicas ou diárias com citações diretas.
+                    </p>
+</div>
+<!-- Card 2: Team Document Interaction -->
+<div class="glass-panel ghost-border p-8 rounded-xl editorial-shadow premium-hover cursor-pointer">
+<div class="flex items-start justify-between mb-6">
+<div class="bg-secondary/20 p-3 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="groups">groups</span>
+</div>
+<span class="font-label text-[10px] text-secondary-fixed uppercase tracking-tighter px-2 py-1 bg-surface-container rounded">Enterprise</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-3">Equipe conversando com documentos</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Colaboração em tempo real sobre bases de conhecimento compartilhadas. Sincronização inteligente via SQLite &amp; ChromaDB.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Ambient Pulse Indicator (Bottom Left) -->
+<div class="absolute bottom-24 left-32 flex items-center gap-4">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-8 h-8 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-primary">Sistema Ativo · Rag Pipeline Ready</span>
+</div>
+</main>
+<script>document.addEventListener('DOMContentLoaded', function() { var video = document.getElementById('bgVideo'); if (!video) return; video.muted = true; var videoSrc = 'https://stream.mux.com/00qQnfNo7sSpn3pB1hYKkyeSDvxs01NxiQ3sr29uL3e028.m3u8'; var fallbackSrc = 'https://stream.mux.com/00qQnfNo7sSpn3pB1hYKkyeSDvxs01NxiQ3sr29uL3e028.mp4'; var tryPlay = function() { video.play().catch(function(e){ console.log('Auto-play prevented', e); }); }; if (window.Hls && Hls.isSupported()) { var hls = new Hls({ startLevel: 0, maxBufferLength: 6, maxMaxBufferLength: 12, capLevelToPlayerSize: true }); hls.loadSource(videoSrc); hls.attachMedia(video); hls.on(Hls.Events.MANIFEST_PARSED, function() { tryPlay(); }); hls.on(Hls.Events.ERROR, function(event, data) { if (data && data.fatal) { hls.destroy(); video.src = fallbackSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } }); } else if (video.canPlayType('application/vnd.apple.mpegurl')) { video.src = videoSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } else { video.src = fallbackSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } });</script>
+<script defer="" src="../shared/presentation.js"></script>
+</body></html>
+
+
+
