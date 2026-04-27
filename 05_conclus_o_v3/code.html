@@ -177,10 +177,10 @@
 <span class="font-label text-[#F7F4FB]/40 text-sm tracking-widest">Slide 05</span>
 </div>
 <h1 class="font-headline text-6xl md:text-8xl font-bold tracking-tighter text-[#F7F4FB] leading-tight">
-                    Do estudante à <span class="text-primary italic">pequena empresa.</span>
+                    Do registro disperso<br/>à <span class="text-primary italic">resposta citada.</span>
 </h1>
-<p class="text-2xl font-light text-[#F7F4FB]/70 max-w-xl leading-relaxed">
-                    IA útil quando sabe citar de onde veio. Uma ponte entre seus dados brutos e o conhecimento acionável.
+<p class="text-xl md:text-2xl font-light text-[#F7F4FB]/70 max-w-2xl leading-relaxed">
+                    O Free Plaud transforma áudio, imagem, texto e PDF em conhecimento recuperável com base explícita no próprio acervo.
                 </p>
 </div>
 <!-- Right Side: Bento Style Cards -->
@@ -191,11 +191,11 @@
 <div class="bg-primary/20 p-3 rounded-lg">
 <span class="material-symbols-outlined text-primary" data-icon="forum">forum</span>
 </div>
-<span class="font-label text-[10px] text-primary-fixed uppercase tracking-tighter px-2 py-1 bg-surface-container rounded">Personal User</span>
+<span class="font-label text-[10px] text-primary-fixed uppercase tracking-tighter px-2 py-1 bg-surface-container rounded">Uso prático</span>
 </div>
-<h3 class="font-headline text-2xl font-bold mb-3">Conversa com suas anotações</h3>
+<h3 class="font-headline text-2xl font-bold mb-3">Uso imediato</h3>
 <p class="text-on-surface-variant text-sm leading-relaxed">
-                        Interface dialógica que entende o contexto de suas notas pessoais, acadêmicas ou diárias com citações diretas.
+                        Consultar anotações, aulas e documentos com respostas fundamentadas.
                     </p>
 </div>
 <!-- Card 2: Team Document Interaction -->
@@ -204,11 +204,11 @@
 <div class="bg-secondary/20 p-3 rounded-lg">
 <span class="material-symbols-outlined text-secondary" data-icon="groups">groups</span>
 </div>
-<span class="font-label text-[10px] text-secondary-fixed uppercase tracking-tighter px-2 py-1 bg-surface-container rounded">Enterprise</span>
+<span class="font-label text-[10px] text-secondary-fixed uppercase tracking-tighter px-2 py-1 bg-surface-container rounded">Contribuição científica</span>
 </div>
-<h3 class="font-headline text-2xl font-bold mb-3">Equipe conversando com documentos</h3>
+<h3 class="font-headline text-2xl font-bold mb-3">Contribuição do TCC</h3>
 <p class="text-on-surface-variant text-sm leading-relaxed">
-                        Colaboração em tempo real sobre bases de conhecimento compartilhadas. Sincronização inteligente via SQLite &amp; ChromaDB.
+                        Avaliar, em português brasileiro, como chunking, recuperação e embeddings afetam a qualidade do sistema.
                     </p>
 </div>
 </div>
@@ -219,7 +219,7 @@
 <div class="absolute w-8 h-8 bg-primary/20 rounded-full blur-xl animate-pulse"></div>
 <div class="w-3 h-3 bg-primary rounded-full"></div>
 </div>
-<span class="font-label text-[10px] uppercase tracking-widest text-primary">Sistema Ativo · Rag Pipeline Ready</span>
+<span class="font-label text-[10px] uppercase tracking-widest text-primary">Acervo indexado · Resposta citada</span>
 </div>
 </main>
 <script>document.addEventListener('DOMContentLoaded', function() { var video = document.getElementById('bgVideo'); if (!video) return; video.muted = true; var videoSrc = 'https://stream.mux.com/00qQnfNo7sSpn3pB1hYKkyeSDvxs01NxiQ3sr29uL3e028.m3u8'; var fallbackSrc = 'https://stream.mux.com/00qQnfNo7sSpn3pB1hYKkyeSDvxs01NxiQ3sr29uL3e028.mp4'; var tryPlay = function() { video.play().catch(function(e){ console.log('Auto-play prevented', e); }); }; if (window.Hls && Hls.isSupported()) { var hls = new Hls({ startLevel: 0, maxBufferLength: 6, maxMaxBufferLength: 12, capLevelToPlayerSize: true }); hls.loadSource(videoSrc); hls.attachMedia(video); hls.on(Hls.Events.MANIFEST_PARSED, function() { tryPlay(); }); hls.on(Hls.Events.ERROR, function(event, data) { if (data && data.fatal) { hls.destroy(); video.src = fallbackSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } }); } else if (video.canPlayType('application/vnd.apple.mpegurl')) { video.src = videoSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } else { video.src = fallbackSrc; video.addEventListener('loadedmetadata', tryPlay, { once: true }); } });</script>
