@@ -129,8 +129,7 @@
     bindHotkeys(routedSlides, currentSlideIndex, home, openHelp, closeHelp);
 
     function withBase(path) {
-        const segments = window.location.pathname.split("/").filter(Boolean);
-        const prefix = segments.length > 1 ? "../" : "./";
+        const prefix = pageId === "home" ? "./" : "../";
         return prefix + path;
     }
 

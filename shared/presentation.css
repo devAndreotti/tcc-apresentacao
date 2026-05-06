@@ -1114,6 +1114,67 @@ body.stitch-compact-height[data-stitch-page="conclusao"] h1 {
     .stitch-pager__meta {
         min-width: 0;
     }
+
+    body[data-stitch-page="diferenciais"],
+    body[data-stitch-page="conclusao"] {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="diferenciais"] main,
+    body.stitch-standard-topbar[data-stitch-page="conclusao"] main {
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
+        padding: 96px 24px 180px !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="diferenciais"] main > .relative.z-10.h-full {
+        height: auto !important;
+        justify-content: flex-start !important;
+        padding: 0 !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="diferenciais"] main .grid {
+        gap: 16px !important;
+        padding-right: 0 !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="diferenciais"] main .aspect-square {
+        aspect-ratio: auto !important;
+        min-height: 220px;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="diferenciais"] main .mt-12 {
+        margin-top: 0 !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="diferenciais"] h1 {
+        font-size: clamp(2rem, 10vw, 2.65rem) !important;
+        line-height: 1.06 !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="diferenciais"] .max-w-4xl {
+        margin-bottom: 24px !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="conclusao"] section {
+        max-width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        gap: 22px !important;
+        align-items: start !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="conclusao"] h1 {
+        max-width: 100%;
+        font-size: clamp(1.65rem, 7vw, 2.35rem) !important;
+        line-height: 1.08 !important;
+    }
+
+    body.stitch-standard-topbar[data-stitch-page="conclusao"] .flipped-video-bg {
+        transform: scaleX(-1) !important;
+    }
 }
 
 @media (max-width: 840px) {
